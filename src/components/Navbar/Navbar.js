@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
 import './Navbar.css'
+import { Button } from '../assets/Button/Button';
 
 const Navbar = () => {
 
     const [toggle, setToggle] = useState(true)
     const handleToggle = () => setToggle(!toggle)
     const closeMobileMenu = () => setToggle(false)
+    const [button, setButton] = useState(true)
+
+    const showButton = () => {
+        if (window.innerWidth <= 960) {
+            setButton(false)
+
+        }
+        else {
+            setButton(true)
+        }
+    }
+
     return (
         <div className="navbar">
             <div className="navbar-container">
@@ -34,6 +47,9 @@ const Navbar = () => {
                         <Link to='/signUp' className='nav-links-mobile' onCLick={closeMobileMenu}>Sign Up</Link>
                     </li>
                 </ul>
+               {
+                button && <Button buttonStyle='btn--ouline'>SIGN UP</Button>
+               }
             </div>
         </div>
     );
